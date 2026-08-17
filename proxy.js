@@ -7,7 +7,7 @@ app.get("/klan/jeep", async (req, res) => {
     let browser;
     try {
         browser = await chromium.launch({
-            headless: false, // pełna przeglądarka, nie headless
+            headless: false, // pełna przeglądarka
             args: [
                 "--disable-blink-features=AutomationControlled",
                 "--no-sandbox",
