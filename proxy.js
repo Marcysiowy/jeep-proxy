@@ -7,7 +7,7 @@ app.get("/klan/jeep", async (req, res) => {
     let browser;
     try {
         browser = await chromium.launch({
-            headless: false, // pełna przeglądarka
+            headless: false, // pełna przeglądarka, nie headless
             args: [
                 "--disable-blink-features=AutomationControlled",
                 "--no-sandbox",
@@ -32,7 +32,8 @@ app.get("/klan/jeep", async (req, res) => {
             timeout: 60000
         });
 
-        await page.waitForTimeout(5000);
+        // Playwright NIE ma waitForTimeout → używamy JS
+        await new Promise(resolve => setTimeout(resolve, 5000));
 
         const html = await page.content();
 
